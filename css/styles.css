@@ -21,12 +21,90 @@
   line-height: 26.4px;
 }
 
+.small{
+  font-size: 16px;
+}
+
 .red{
   color: red;
+}
+.big{
   font-size: 40px;
 }
 
 
 #timer{
   padding-top: 3rem;
+}
+
+#left {
+  float: left;
+  width: 25%;
+  height: 50%;
+  background-color: #e8e8e8;
+  box-sizing: border-box;
+  overflow: hidden;
+
+}
+
+#middle {
+  float: left;
+  width: 47%;
+  height: 50%;
+}
+
+#right {
+  width: 25%;
+  height: 50%;
+  display: inline-block;
+  background-color: #e8e8e8;
+}
+
+footer{
+  background-color: black;
+
+  height: 5% ;
+  line-hei3ght: 1rem;
+  width: 100%;
+  position:fixed;
+  bottom:0;
+  left:0;
+  text-align: right;
+  margin-right: 5rem;
+}
+
+#copyrights{
+  width: 100%;
+  color:white;
+  padding-top: 0.6rem;
+}
+.container{
+  text-align: left;
+  vertical-align: bottom;
+
+  width: 100%;
+  height: 100%;
+}
+#results{
+  width:  100%;
+  height: 80%;
+  overflow-y: scroll;
+}
+.margined{
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.float-red{
+  color: red;
+  float:left;
+    font-size: 28px;
+}
+
+.raleway-font{
+  font-family: 'Raleway', sans-serif;
+}
+.row{
+  padding-bottom: 0.6rem;
 }

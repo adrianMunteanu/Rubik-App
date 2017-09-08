@@ -39,7 +39,7 @@ function randomImage() {
     theImage.alt = imgIndex;
     $('#algorithm').hide();
     $('#algorithm').text(imgIndex + ":  " + algs[imgIndex - 1]);
-    $('#algorithm').fadeIn(6000);
+    $('#algorithm').fadeIn(4500);
     if (timer !=null) timer.stop();
     timer = new Timer();
     timer.start({precision: 'secondTenths', callback: function (values) {
@@ -59,10 +59,20 @@ $(window).keypress(function (e) {
   if (e.keyCode === 0 || e.keyCode === 32) {
     e.preventDefault()
     if(spaces % 2 ==0){
+
       randomImage();
     }
     else{
       timer.pause();
+      $('#algorithm').show();
+      $(results).prepend("<div class='impact-font row'><div class='float-red'>" + timer.getTimeValues().toString([ 'seconds', 'secondTenths']) + "</div><div class='raleway-font'>s&nbsp;&nbsp;&nbsp; " + getFormattedDate() +"</div></div>");    }
     }
+  })
+
+
+  function getFormattedDate() {
+      var date = new Date();
+      var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+      return str;
   }
-})
