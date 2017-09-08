@@ -1,20 +1,31 @@
 <html>
 <head>
+  <script src="js/easytimer.js"></script>
   <script src="js/jquery-3.2.1.js"></script>
   <script src="js/index.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 </head>
 
 <body onload="randomImage()">
 
-  <h2>Rubik App</h2>
-  <br /><br />
+  <header>
+    <div id="banner">
+      <img src="images/logo_rubik.png" width="400rem"/>
+    </div>
 
-  <div>
-    <a href="#" onclick="randomImage()">
-      <img id="cll-image"  />
-    </a>
+  </header>
+  <div id ="content">
 
+    <img id="cll-image" height="250rem" />
+
+    <div>
+
+
+      <div id="algorithm" class="impact-font"></div>
+    </div>
+    <br />
+    <div id="timer" class="impact-font red">00:00:00</div>
   </div>
 
 </body>

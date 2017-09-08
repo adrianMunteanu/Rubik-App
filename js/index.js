@@ -1,17 +1,34 @@
 var lastIndex = 0;
-
+var timer;
+var spaces = 0;
 function randomImage() {
   var theImage = document.getElementById('cll-image');
   var imgDir = 'cll-algs/';
   var imgArray = ['bigtv.jpg','caddy.jpg','fatcat.jpg','manhart.jpg','roastdog.jpg'];
-  var algLength = 20;
-  var algs = new Array();
+  var algs = [
+    'R U R\' U R U2 R\'',
+    '(U\') R\' F R2 F\' R U2 R\' U\' R2',
+    'F R\' F\' R U2 R U2 R\'',
+    'R U\' R\' F L\' U\' L',
+    '(U2) R U\' R U\' R\' U R\' U\' y R U\' R\'',
+    'L\' U2 L U2 L F\' L\' F',
+    'R U2 R\' U\' R U\' R\'',
+    'R\' U R U\' R2\' F R F\' R U R\' U\' R',
+    'F\' L F L\' U2 L\' U2 L',
+    'R\' F R F\' R U R\'',
+    'R\' F2 R F\' R\' F2 R U\' R\' F R F\'',
+    'R U2 R\' U2 R\' F R F\'',
+    'R2 U2 R U2\' R2\'',
+    'F R U R\' U\' R U R\' U\' R U R\' U\'F\'',
+    'R U R\' U R U R\' F R\' F\' R',
+    'R\' U2 R y R\' U R\' U\' R U\' R'
+  ];
   var imgIndex = 1;
 
   if(imgArray.length > 1) {
 
 
-    imgIndex = Math.floor(Math.random() * 15 + 1);
+    imgIndex = Math.floor(Math.random() * algs.length + 1);
 
     lastIndex = imgIndex;
 
@@ -20,6 +37,17 @@ function randomImage() {
 
     theImage.src = imgPath;
     theImage.alt = imgIndex;
+    $('#algorithm').hide();
+    $('#algorithm').text(imgIndex + ":  " + algs[imgIndex - 1]);
+    $('#algorithm').fadeIn(6000);
+    if (timer !=null) timer.stop();
+    timer = new Timer();
+    timer.start({precision: 'secondTenths', callback: function (values) {
+      $('#timer').html(values.toString([ 'seconds', 'secondTenths']));
+    }});
+    timer.addEventListener('secondsUpdated', function (e) {
+      $('#timer').html(timer.getTimeValues().toString());
+    });
   }
 }
 
@@ -27,8 +55,14 @@ function randomImage() {
 
 
 $(window).keypress(function (e) {
+  spaces++;
   if (e.keyCode === 0 || e.keyCode === 32) {
     e.preventDefault()
-    randomImage();
+    if(spaces % 2 ==0){
+      randomImage();
+    }
+    else{
+      timer.pause();
+    }
   }
 })
