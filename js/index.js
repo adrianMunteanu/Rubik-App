@@ -27,9 +27,13 @@ function randomImage() {
 
   if(imgArray.length > 1) {
 
+    var cllCase = 0;
+    while(!isCaseSelected(cllCase)){
+    imgIndex = Math.floor(Math.random() * 40 + 1);
 
-    imgIndex = Math.floor(Math.random() * algs.length + 1);
-
+    cllCase = Math.floor(imgIndex / 6) +1 ;
+    alert(cllCase)
+  }
     lastIndex = imgIndex;
 
     // var imgPath = imgDir + imgArray[imgIndex];
@@ -40,7 +44,7 @@ function randomImage() {
     $('#algorithm').hide();
     $('#algorithm').text(imgIndex + ":  " + algs[imgIndex - 1]);
     $('#algorithm').fadeIn(4500);
-    if (timer !=null) timer.stop();
+    if (timer != null) timer.stop();
     timer = new Timer();
     timer.start({precision: 'secondTenths', callback: function (values) {
       $('#timer').html(values.toString([ 'seconds', 'secondTenths']));
@@ -71,8 +75,31 @@ $(window).keypress(function (e) {
 
 
   function getFormattedDate() {
-      var date = new Date();
-      var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    var date = new Date();
+    var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
-      return str;
+    return str;
   }
+
+  function isCaseSelected(cllCasee){
+    if(cllCasee == 0) return false;
+
+    if($(".radio:nth-child(" + cllCasee + ") .radio-option").hasClass("click")){
+      return true;
+    }
+    return false;
+  }
+
+  $(document).ready(function () {
+    $('.radio-option').click(function () {
+      $(this).not(this).removeClass('click');
+      $(this).toggleClass("click");
+    });
+
+
+
+    // $('li').click(function () {
+    //   alert($(this).index())
+    // });
+
+  });

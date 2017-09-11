@@ -108,3 +108,22 @@ footer{
 .row{
   padding-bottom: 0.6rem;
 }
+
+
+li {
+    list-style-type: none;
+    padding-bottom: 8px;
+}
+div {
+    padding-right: 8px;
+}
+.radio-option {
+    float: left;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background: url(https://i.imgur.com/rw8GL4i.png) no-repeat 0px 0px;
+}
+.radio-option.click {
+    background: url(https://i.imgur.com/iczggQI.png) no-repeat 0px 0px;
+}
