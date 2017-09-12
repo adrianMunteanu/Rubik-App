@@ -28,12 +28,15 @@ function randomImage() {
   if(imgArray.length > 1) {
 
     var cllCase = 0;
-    while(!isCaseSelected(cllCase)){
-    imgIndex = Math.floor(Math.random() * 40 + 1);
 
-    cllCase = Math.floor(imgIndex / 6) +1 ;
-    alert(cllCase)
-  }
+    while(!isCaseSelected(cllCase) || (lastIndex == imgIndex)){
+      // alert(lastIndex + " "  + imgIndex)
+      imgIndex = Math.floor(Math.random() * 40 + 1);
+
+      cllCase = Math.floor(imgIndex / 6.01 +1) ;
+      // alert(lastIndex + " "  + imgIndex + " " + cllCase)
+
+    }
     lastIndex = imgIndex;
 
     // var imgPath = imgDir + imgArray[imgIndex];
@@ -81,14 +84,18 @@ $(window).keypress(function (e) {
     return str;
   }
 
+
   function isCaseSelected(cllCasee){
     if(cllCasee == 0) return false;
 
     if($(".radio:nth-child(" + cllCasee + ") .radio-option").hasClass("click")){
+      console.log("isCase -> " + cllCasee);
       return true;
     }
+    console.log("!isCase -> " + cllCasee);
     return false;
   }
+
 
   $(document).ready(function () {
     $('.radio-option').click(function () {
