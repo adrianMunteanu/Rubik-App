@@ -1,7 +1,10 @@
 var lastIndex = 0;
 var timer;
 var spaces = 0;
+var attempts;
 function randomImage() {
+
+  treatStorage();
   var theImage = document.getElementById('cll-image');
   var imgDir = 'cll-algs/';
   var imgArray = ['bigtv.jpg','caddy.jpg','fatcat.jpg','manhart.jpg','roastdog.jpg'];
@@ -18,6 +21,30 @@ function randomImage() {
     'R\' F R F\' R U R\'',
     'R\' F2 R F\' R\' F2 R U\' R\' F R F\'',
     'R U2 R\' U2 R\' F R F\'',
+    'F R U R\' U\' R U R\' U\' F\'',
+    '(U\') R\' U\' R\' F R F\' R U\' R\' U2 R',
+    'R U\' R\' F R\' F R U R\' F R',
+    '(U\') R U\' R U\' R\' U R\' F R2 F\'',
+    'R U2 R\' U\' R U R\' U2 R\' F R F\'',
+    'R\' F2 R F\' U2 R U\' R\' U\' F',
+    'F R U R\' U\' F\'',
+    '(U2) R U\' R U\' R U\' R\' U R\' U R',
+    'z\' U2 R\' U\' R2 U\' R\' U\' R U\' R\' U\'',
+    'F R\' F\' R U\' R U\' R\' U2 R U\' R\'',
+    '(U) R U\' R2 F R F\' R U R\' U\' R U R\'  ',
+    '(U\')R2 U R\' U\' R2 U\' y L\' U2 L',
+    'F R U\' R\' U\' R U R\' F\'',
+    'F R\' F\' R U R U\' R\'',
+    'R U2 R2\' F R F\' R U2\' R\'',
+    '(U ) R\' U R\' U2 R U\' R\' U R U\' R2',
+    'R U2 R\' U\' y\' R2 U\' R\' U R2',
+    'R U2 R\' F\' R U2 R\' U R\' F2 R',
+    'R U R\' U\' R\' F R F\'',
+    '(U2) L\' U\' L U L F\' L\' F',
+    '(U) F U\' R U2 R\' U\' F2 R U R\'',
+    '(U2) R\' U R\' F U\' R U F2 R2',
+    '(U\') F R U R\' U\' R U\' R\' U\' R U R\' F\'',
+    '(U) R\' U R U2 R2 F R F\' R2',
     'R2 U2 R U2\' R2\'',
     'F R U R\' U\' R U R\' U\' R U R\' U\'F\'',
     'R U R\' U R U R\' F R\' F\' R',
@@ -62,11 +89,17 @@ function randomImage() {
 
 
 $(window).keypress(function (e) {
-  spaces++;
+
+  if(e.keyCode === 18){
+    e.preventDefault();
+  }
+  else
+
   if (e.keyCode === 0 || e.keyCode === 32) {
+    spaces++;
     e.preventDefault()
     if(spaces % 2 ==0){
-
+      localStorage.attempts= Number(attempts)+1;
       randomImage();
     }
     else{
@@ -89,10 +122,8 @@ $(window).keypress(function (e) {
     if(cllCasee == 0) return false;
 
     if($(".radio:nth-child(" + cllCasee + ") .radio-option").hasClass("click")){
-      console.log("isCase -> " + cllCasee);
       return true;
     }
-    console.log("!isCase -> " + cllCasee);
     return false;
   }
 
@@ -102,11 +133,16 @@ $(window).keypress(function (e) {
       $(this).not(this).removeClass('click');
       $(this).toggleClass("click");
     });
-
-
-
-    // $('li').click(function () {
-    //   alert($(this).index())
-    // });
-
   });
+
+
+  function treatStorage(){
+    if (localStorage.getItem("attempts") === null) {
+      attempts = 0;
+      localStorage.setItem("attempts", attempts);
+    }
+    attempts = localStorage.attempts;
+
+    $('#attempts').html("Count: " + attempts)
+
+  }
